@@ -2,13 +2,19 @@
 
 from PIL import Image
 
-import glob,os
+import os
 
-size = 600, 400
+directory = os.path.normpath(os.path.join(os.getcwd(), "supplier-data", "images"))
+print(directory)
 
-for infile in glob.glob("/supplier-data/images/*.tiff"):
-    im = Image.open(infile).convert("RGB")
-    im.resize((size)).save("/supplicer-data/images/" + infile + ".JPEG", "JPEG")
+size = (600, 400)
+
+for infile in os.listdir(directory):
+    if infile.endswith(".tiff"):
+        filename = os.path.splitext(infile)[0]
+        new_filename = filename + ".JPEG"
+        im = Image.open(os.path.join(directory,infile)).convert("RGB")
+        im.resize(size).save(os.path.join(directory,new_filename), "JPEG")
 
 
 
@@ -19,5 +25,3 @@ for infile in glob.glob("/supplier-data/images/*.tiff"):
 
 #after processing the images, save them in ~/supplier-data/images
 #with JPEG extension
-
-
