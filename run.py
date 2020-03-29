@@ -18,7 +18,7 @@ for item in dirs:
   fruit["description"]=description
   fruit["weight"]=int(line[1].strip('\n').strip('lbs'))
   fruit["name"]=line[0].strip('\n')
-  fruit["image_name"]=(item.strip('.txt'))+'.jpeg'
+  fruit["image_name"]=(item.strip('.txt'))+'.jpeg')
   print(fruit)
   response=requests.post(url,json=fruit)
   print(response.request.url)
