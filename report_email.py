@@ -3,6 +3,7 @@
 import os
 from datetime import date
 import reports
+import emails
 import sys
 
 path = os.path.normpath(os.path.join(os.getcwd(), "supplier-data", "descriptions"))
@@ -28,7 +29,8 @@ def main(argv):
     today = date.today()
     title = "Processed Update on {}".format(today)
     reports.generate_report("/tmp/processed.pdf", title, data)
-
+    email = emails.generate_email("automation@example.com", "student-01-aba8cdda2c75@example.com", "Upload Completed - Online Fruit Store", "All fruits are uploaded to our website successfully. A detailed list is attached to this email.", "/tmp/processed.pdf")
+    emails.send_email(email)
 
   # TODO: send the PDF report as an email attachment
 
