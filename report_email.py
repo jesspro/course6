@@ -20,7 +20,10 @@ def get_data():
             for i in range(2,len(line)):
                 fruit["weight"]=line[1].strip('\n')
                 fruit["name"]=line[0].strip('\n')
-        the_text = "<br/>".join([the_text, "", str("name: " + fruit["name"]), str("weight: " + fruit["weight"])])
+        if the_text == "":
+            the_text = "<br/>".join([str("name: " + fruit["name"]), str("weight: " + fruit["weight"])])
+        else:
+            the_text = "<br/>".join([the_text, "", str("name: " + fruit["name"]), str("weight: " + fruit["weight"])])
     print(the_text)
     return the_text
 
