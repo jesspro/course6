@@ -12,7 +12,7 @@ size = (600, 400)
 for infile in os.listdir(directory):
     if infile.endswith(".tiff"):
         filename = os.path.splitext(infile)[0]
-        new_filename = filename + ".JPEG"
+        new_filename = filename + ".jpeg"
         im = Image.open(os.path.join(directory,infile)).convert("RGB")
         im.resize(size).save(os.path.join(directory,new_filename), "JPEG")
 
