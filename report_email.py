@@ -20,13 +20,13 @@ def get_data():
             for i in range(2,len(line)):
                 fruit["weight"]=line[1].strip('\n')
                 fruit["name"]=line[0].strip('\n')
-        the_text = "<br/>".join([str("name: " + fruit["name"]), str("weight: " + fruit["weight"]), "", the_text])
+        the_text = "<br/>".join([the_text, "", str("name: " + fruit["name"]), str("weight: " + fruit["weight"])])
     print(the_text)
     return the_text
 
 def main(argv):
     data = get_data()
-    today = date.today()
+    today = date.today().strftime("%B %d, %Y")
     title = "Processed Update on {}".format(today)
     reports.generate_report("/tmp/processed.pdf", title, data)
     email = emails.generate_email("automation@example.com", "student-01-aba8cdda2c75@example.com", "Upload Completed - Online Fruit Store", "All fruits are uploaded to our website successfully. A detailed list is attached to this email.", "/tmp/processed.pdf")
