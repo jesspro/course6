@@ -5,7 +5,7 @@ import json
 path = os.path.normpath(os.path.join(os.getcwd(), "supplier-data", "descriptions"))
 
 dirs=os.listdir(path)
-url='http://35.238.32.211/fruits/'
+url='http://localhost/fruits/'
 fruit={}
 for item in dirs:
  fruit.clear()
@@ -18,7 +18,7 @@ for item in dirs:
   fruit["description"]=description
   fruit["weight"]=int(line[1].strip('\n').strip('lbs'))
   fruit["name"]=line[0].strip('\n')
-  fruit["image_name"]=(item.strip('.txt'))+'.jpeg')
+  fruit["image_name"]=(item.strip('.txt'))+'.jpeg'
   print(fruit)
   response=requests.post(url,json=fruit)
   print(response.request.url)

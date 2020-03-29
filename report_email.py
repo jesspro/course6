@@ -3,37 +3,38 @@
 import os
 from datetime import date
 import reports
+import sys
 
 path = os.path.normpath(os.path.join(os.getcwd(), "supplier-data", "descriptions"))
+fruit = {}
 
 
-
-def get_data(directory)
+def get_data():
     the_text = ""
-    for item os.listdir(directory):
+    for item in os.listdir(path):
         fruit.clear()
-        filename=os.path.join(directory,item)
+        filename=os.path.join(path,item)
         with open(filename) as f:
             line=f.readlines()
             for i in range(2,len(line)):
-                fruit["weight"]=int(line[1].strip('\n'))
+                fruit["weight"]=line[1].strip('\n')
                 fruit["name"]=line[0].strip('\n')
-        the_text = "</ br>".join(("name: " + fruit["name"]), ("weight: " + fruit["weight"], "", the_text))
+        the_text = "<br/>".join([str("name: " + fruit["name"]), str("weight: " + fruit["weight"]), "", the_text])
     print(the_text)
     return the_text
 
 def main(argv):
-  data = get_data(path)
-  today = date.today()
-  title = "Processed Update on {}".format(today)
-  reports.generate_report("/tmp/processed.pdf", title, data)
+    data = get_data()
+    today = date.today()
+    title = "Processed Update on {}".format(today)
+    reports.generate_report("/tmp/processed.pdf", title, data)
 
 
   # TODO: send the PDF report as an email attachment
 
 
 if __name__ == "__main__":
-  main(sys.argv)
+    main(sys.argv)
 
 
 # import all the necessary libraries(os, datetime and reports)
