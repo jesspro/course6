@@ -2,10 +2,33 @@
 
 import shutil
 import psutil
+import time
+
+def check_cpu():
+    cpu = psutil.cpu_percent()
+
+def check_diskspace():
+    #
+
+def check_mem():
+    #
+
+def check_localhost():
+    #
+
+def alert
+
+def
+while True:
+    check_cpu()
+    check_diskspace()
+    check_mem()
+    check_localhost()
+    time.sleep(60)
 
 # Complete the script to check the system statistics
-# every 60 seconds, and in event of any issues detected among 
-# the ones mentioned above, an email should be sent with 
+# every 60 seconds, and in event of any issues detected among
+# the ones mentioned above, an email should be sent with
 # the following content:
 
 # From: automation@example.com
@@ -19,8 +42,7 @@ import psutil
 # Available memory is less than 500MB
 # localhost cannot be resolved to 127.0.0.1
 
-# Note: There is no attachment file here, so you must be careful 
-# while defining the generate_email() method in the emails.py script 
-# or you can create a separate generate_error_report() method 
+# Note: There is no attachment file here, so you must be careful
+# while defining the generate_email() method in the emails.py script
+# or you can create a separate generate_error_report() method
 # for handling non-attachment email.
-
