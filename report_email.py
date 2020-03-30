@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 
 import os
-from datetime import date
+import datetime
 import reports
 import emails
-import sys
 
 path = os.path.normpath(os.path.join(os.getcwd(), "supplier-data", "descriptions"))
 fruit = {}
@@ -18,28 +17,28 @@ def get_data():
         with open(filename) as f:
             line=f.readlines()
             for i in range(2,len(line)):
-                fruit["weight"]=line[1].strip('\n')
-                fruit["name"]=line[0].strip('\n')
+                fruit["weight"]=line[1]
+                fruit["name"]=line[0]
         if the_text == "":
-            the_text = "<br/>".join([str("name: " + fruit["name"]), str("weight: " + fruit["weight"])])
+            the_text = "<br />".join([str("name: " + fruit["name"]), str("weight: " + fruit["weight"])])
         else:
-            the_text = "<br/>".join([the_text, "", str("name: " + fruit["name"]), str("weight: " + fruit["weight"])])
+            the_text = "<br />".join([the_text, "", str("name: " + fruit["name"]), str("weight: " + fruit["weight"])])
     print(the_text)
     return the_text
 
-def main(argv):
-    data = get_data()
-    today = date.today().strftime("%B %d, %Y")
+def main():
+    paragraph = get_data()
+    today = datetime.date.today().strftime("%B %d, %Y")
     title = "Processed Update on {}".format(today)
-    reports.generate_report("/tmp/processed.pdf", title, data)
-    email = emails.generate_email("automation@example.com", "student-01-aba8cdda2c75@example.com", "Upload Completed - Online Fruit Store", "All fruits are uploaded to our website successfully. A detailed list is attached to this email.", "/tmp/processed.pdf")
+    attachment = "/tmp/processed.pdf"
+    reports.generate_report(attachment, title, paragraph)
+    email = emails.generate_email("automation@example.com", "student-04-e78d857cad20@example.com", "Upload Completed - Online Fruit Store", "All fruits are uploaded to our website successfully. A detailed list is attached to this email.", attachment)
     emails.send_email(email)
 
-  # TODO: send the PDF report as an email attachment
 
 
 if __name__ == "__main__":
-    main(sys.argv)
+    main()
 
 
 # import all the necessary libraries(os, datetime and reports)
